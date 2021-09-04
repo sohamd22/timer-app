@@ -152,6 +152,8 @@ resetBtn.addEventListener("click", function() {
     audioStopBtn.style.display = "none";
 
     isPaused = true;
+    statusLogo.innerHTML = "";
+    
     audioPlayed = false;
     timerAudio.pause();
     timerAudio.currentTime = 0;
