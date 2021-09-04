@@ -149,6 +149,8 @@ resetBtn.addEventListener("click", function() {
 
     timerBtn.style.borderColor = "rgb(255, 153, 0)";
     timerDisplay.style.color = "snow";
+    timerDisplay.style.fontSize = "2rem";
+    
     audioStopBtn.style.display = "none";
 
     isPaused = true;
@@ -211,7 +213,14 @@ function timerIntervalFunction() {
             else {
                 statusLogo.innerHTML = "<i class='fas fa-play-circle'></i>";
             }
-
+            
+            if(seconds == 59) { 
+                seconds = 0; 
+                minutes++; 
+            } 
+            else { 
+                seconds++; 
+            }
             clearInterval(timerInterval);
         }
     }            
