@@ -98,7 +98,8 @@ function timerFunction() {
             timerBtn.style.borderColor = "tomato";            
             
             if(audioPlayed == false) {
-                if(uploadedAudio != null && uploadedAudioExt == "mp3") {
+                if(uploadedAudio != null
+) {
                     timerAudio.setAttribute("src", URL.createObjectURL(uploadedAudio));
                 }
                 else {
