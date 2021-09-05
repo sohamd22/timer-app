@@ -4,6 +4,8 @@ secInput = document.querySelector("#sec-input");
 repeatAmountInput = document.querySelector("#repeat-amount-input");
 ringTimeInput = document.querySelector("#ring-time-input");
 
+uploadInput = document.querySelector("#audio-upload-input")
+
 timerBtn = document.querySelector(".timer-container");
 timerDisplay = document.querySelector(".timer-text");
 
@@ -27,6 +29,9 @@ let isPaused = true;
 let audioPlayed = false;
 
 let randomAudio;
+let uploadedAudio = null;
+let uploadedAudioExt = null;
+
 let ringTime = 25;
 
 let loops = 1;
@@ -56,6 +61,11 @@ repeatAmountInput.addEventListener("change", function(){
 ringTimeInput.addEventListener("change", function(){
     ringTime = Math.floor(ringTimeInput.value);
 })
+
+uploadInput.addEventListener("change", function(event){
+    uploadedAudio = this.files[0];;
+    uploadedAudioExt = getFileExtension(getFileName(uploadInput));
+});
 
 timerBtn.addEventListener("click", timerIntervalFunction); 
 
@@ -88,8 +98,13 @@ function timerFunction() {
             timerBtn.style.borderColor = "tomato";            
             
             if(audioPlayed == false) {
-                randomAudio = "timer-sound-" + (Math.floor(Math.random() * 3) + 1) + ".mp3";
-                timerAudio.setAttribute("src", randomAudio);
+                if(uploadedAudio != null && uploadedAudioExt == "mp3") {
+                    timerAudio.setAttribute("src", URL.createObjectURL(uploadedAudio));
+                }
+                else {
+                    randomAudio = "timer-sound-" + (Math.floor(Math.random() * 3) + 1) + ".mp3";
+                    timerAudio.setAttribute("src", randomAudio);
+                }                
 
                 timerAudio.play();
 
@@ -262,4 +277,10 @@ resetBtn.addEventListener("click", function() {
     repeatsLeft.innerText = "";
 });
 
+function getFileExtension(filename){
+    return filename.substring(filename.lastIndexOf('.') + 1, filename.length);
+}
 
+function getFileName(file) {
+    return file.value;
+}
