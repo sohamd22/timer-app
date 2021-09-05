@@ -30,7 +30,6 @@ let audioPlayed = false;
 
 let randomAudio;
 let uploadedAudio = null;
-let uploadedAudioExt = null;
 
 let ringTime = 25;
 
@@ -63,8 +62,7 @@ ringTimeInput.addEventListener("change", function(){
 })
 
 uploadInput.addEventListener("change", function(event){
-    uploadedAudio = this.files[0];;
-    uploadedAudioExt = getFileExtension(getFileName(uploadInput));
+    uploadedAudio = this.files[0];
 });
 
 timerBtn.addEventListener("click", timerIntervalFunction); 
@@ -98,8 +96,7 @@ function timerFunction() {
             timerBtn.style.borderColor = "tomato";            
             
             if(audioPlayed == false) {
-                if(uploadedAudio != null
-) {
+                if(uploadedAudio != null) {
                     timerAudio.setAttribute("src", URL.createObjectURL(uploadedAudio));
                 }
                 else {
@@ -277,11 +274,3 @@ resetBtn.addEventListener("click", function() {
     repeats = 0; 
     repeatsLeft.innerText = "";
 });
-
-function getFileExtension(filename){
-    return filename.substring(filename.lastIndexOf('.') + 1, filename.length);
-}
-
-function getFileName(file) {
-    return file.value;
-}
