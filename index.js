@@ -113,6 +113,7 @@ function timerFunction() {
                 
                 setTimeout(function() {
                     clearInterval(audioInterval);
+                    audioStopBtn.style.display = "none";
                     timerAudio.pause();
                     timerAudio.currentTime = 0;
                 }, ringTime * 1000);
