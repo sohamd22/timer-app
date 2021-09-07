@@ -202,12 +202,12 @@ function timerFunction() {
 }
 
 function timerIntervalFunction() {
-    if(originalMinutes <= 0 && originalSeconds <= 0 || originalMinutes >= 60 || originalSeconds >= 60 || ((originalSeconds % 2 != 0 && originalSeconds % 2 != 1) || (originalMinutes % 2 != 0 && originalMinutes % 2 != 1)) || repeatAmount <= 0 || ringTime <= 0 || ringTime >= 60) {
+    if(originalMinutes <= 0 && originalSeconds <= 0 || originalMinutes >= 60 || originalSeconds >= 60 || ((originalSeconds % 2 != 0 && originalSeconds % 2 != 1) || (originalMinutes % 2 != 0 && originalMinutes % 2 != 1)) || repeatAmount <= 0 || repeatAmount > 100 || ringTime <= 0 || ringTime > 90) {
         timerDisplay.style.color = "lightgray";
         timerBtn.style.borderColor = "tomato";
         timerDisplay.style.fontSize = "1.6rem";
 
-        timerDisplay.innerText = "Invalid Input(s).";
+        timerDisplay.innerText = "Invalid Input(s)."; 
     } 
     else {
         timerDisplay.style.color = "snow";
